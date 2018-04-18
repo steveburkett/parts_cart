@@ -1,21 +1,30 @@
 @import "bootstrap";
 
 .part div, .part input {
-    width: 25%;
-    vertical-align: top;
-    margin-bottom: 5px;
+  width: 25%;
+  vertical-align: top;
+  margin-bottom: 5px;
 }
 
 .cart {
-    margin-top: 30px;
+  margin-top: 30px;
 }
 
 .header, .part {
-    margin-bottom: 5px;
+  margin-bottom: 5px;
 }
 
 .part-button {
-    margin-left: 5px;
+  margin-left: 5px;
+}
+
+.parts {
+  margin-top: 10%;
+  text-align: center;
+}
+
+.parts h3 {
+  margin-bottom: 20px;
 }
 
 .parts {
