@@ -27,7 +27,10 @@ class Body extends React.Component {
       <div className='parts'>
         <h3> Parts Cart </h3>
         <NewPart handleSubmit={ event => this.handleSubmit(event) } />
-        <AllParts parts={this.state.parts} handleDelete={ this.handleDelete.bind(this) } />
+        <AllParts parts={this.state.parts}
+                  handleDelete={ this.handleDelete.bind(this) }
+                  handleUpdate={ this.handleUpdate.bind(this) }
+        />
       </div>
     )
   }
@@ -56,6 +59,27 @@ class Body extends React.Component {
         this.removePart(part_id);
       }
     });
+  }
+
+  updateParts(part) {
+    var parts = this.state.parts.filter((state_part) => {
+      return state_part.id != part.id
+    });
+    parts.push(part);
+    this.setState({parts: this.orderParts(parts) });
+  }
+
+  handleUpdate = (part) => {
+    console.log("Body.handleUpdate " + part.id);
+
+    jquery.ajax({
+      url: `/api/parts/${part.id}`,
+      type: 'PUT',
+      context: this,
+      data: { part: part },
+      success: () => { this.updateParts(part);
+      }
+    })
   }
 }
 

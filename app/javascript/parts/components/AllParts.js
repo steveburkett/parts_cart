@@ -8,6 +8,7 @@ class AllParts extends React.Component {
         <div key={part.id}>
           <Part part={part}
                 handleDelete={this.handleDelete.bind(this, part.id)}
+                handleUpdate={this.handleUpdate.bind(this)}
           />
         </div>
       )
@@ -19,6 +20,10 @@ class AllParts extends React.Component {
 
   handleDelete(part_id) {
     this.props.handleDelete(part_id);
+  }
+
+  handleUpdate(part) {
+    this.props.handleUpdate(part);
   }
 }
 
