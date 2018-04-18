@@ -9,6 +9,7 @@ class Part extends React.Component {
       <div className="part">
         {name}
         {description}
+        <button className="part-button" onClick={this.props.handleDelete} >Delete</button>
       </div>
     )
   }

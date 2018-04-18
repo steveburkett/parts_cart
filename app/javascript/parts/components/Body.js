@@ -27,7 +27,7 @@ class Body extends React.Component {
       <div className='parts'>
         <h3> Parts Cart </h3>
         <NewPart handleSubmit={ event => this.handleSubmit(event) } />
-        <AllParts parts={this.state.parts}/>
+        <AllParts parts={this.state.parts} handleDelete={ this.handleDelete.bind(this) } />
       </div>
     )
   }
@@ -35,6 +35,27 @@ class Body extends React.Component {
   handleSubmit(part) {
     var newState = this.state.parts.concat(part);
     this.setState({ parts: newState });
+  }
+
+  removePart(part_id) {
+    var newParts = this.state.parts.filter((part) => {
+      return part.id != part_id;
+    });
+
+    this.setState({ parts: newParts });
+  }
+
+  handleDelete = (part_id) => {
+    console.log("Body.handleDelete " + part_id);
+
+    jquery.ajax({
+      url: `/api/parts/${part_id}`,
+      context: this,
+      type: 'DELETE',
+      success(response) {
+        this.removePart(part_id);
+      }
+    });
   }
 }
 
